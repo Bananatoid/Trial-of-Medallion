@@ -286,13 +286,13 @@ static ENTITY *whatsInside(const char *noun)
             for (ent2 = ents; ent2 < endOfEnts; ent2++)
             {
                 //if (ent2->location != NULL && ent == player)                  // if checking player's inventory
-                //{
+                //{                                                                                                                                             // ANTHONY MAKE COMMAND "check player" list objects in player inventory
                 //    if (strcmp(ent2->location->name, ent->name) == 0 && counter == 0) printf("\nUpon checking %s you see:\n%s", noun, ent2->name);
                 //    if (strcmp(ent2->location->name, ent->name) == 0 && counter > 0) printf(",\n%s", noun, ent2->name);
                 //} 
                 if (ent2->location != NULL && ent->location == player->location && strcmp(ent->visited, "now") == 0 || ent == player)           // If standing next to entity to check *Checks entity*
                 {
-                    if (strcmp(ent2->location->name, ent->name) == 0 ) printf("\nUpon checking %s you see:\n%s", noun, ent2->desc[0]); counter++; continue;             // FINIDHED HERE TRYING TO MAKE check *noun* command give nicely formatted outputs
+                    if (strcmp(ent2->location->name, ent->name) == 0 ) printf("\nUpon checking %s you see:\n%s", noun, ent2->desc[0]); counter++; continue;             // ANTHONY TRY TO MAKE check *noun* command give nicely formatted outputs
                     if (strcmp(ent2->location->name, ent->name) == 0 && counter > 0) printf(",\n%s", ent2->desc[0]);
                 }
                 else if (ent2->location != NULL && ent->location == player->location && strcmp(ent->visited, "yes") == 0 )      // If standing in the same location as the entity to check, but not close to it
