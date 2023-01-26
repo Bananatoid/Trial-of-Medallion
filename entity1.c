@@ -124,8 +124,8 @@ static const char *tags99 [] =   {"sling", NULL};
 static const char *tags100[] =   {"branch", "twig", NULL};
 static const char *tags101[] =   {"letter", "paper", "note", NULL};
 static const char *tags102[] =   {"sack", "gold", NULL};
-static const char *tags103[] =   {"medallion", "bogneck", NULL};
-static const char *tags104[] =   {"medallion", "totemneck", NULL};
+static const char *tags103[] =   {"medallion", "bogneck", "shiny", NULL};
+static const char *tags104[] =   {"medallion", "totemneck", "rusty", NULL};
 static const char *tags105[] =   {"medallion", "necklace", NULL};
 static const char *tags106[] =   {"medallion", "necklace", NULL};
 static const char *tags107[] =   {"medallion", "necklace", NULL};
@@ -720,12 +720,19 @@ static const char *descLetter[] = {
 "letter4",
 "Letter" };
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static const char *descMedallion[] = {
+static const char *descMedallion_1 = {
 "Shiny Medallion",
 "MEdallion2",
 "MEdallion3",
 "Medallion4",
-"Medallion" };
+"Shiny Medallion" };
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+static const char *descMedallion_2 = {
+"Rusty Medallion",
+"MEdallion2",
+"MEdallion3",
+"Medallion4",
+"Rusty Medallion" };
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 static const char *descDrowner_D[] = {
 "dead drowner1",
@@ -941,13 +948,13 @@ ENTITY ents[] = {
     {  "branch",          tags100,    NULL,        descBranch,      "no",       treetop,   NULL,       0   ,   4  ,        4  , },
     {  "letter",          tags101,    NULL,        descLetter,      "no",       treetop,   NULL,       0   ,   1  ,        1  , },
     {  "sack_2",          tags102,    NULL,        descSack,        "no",       treetop,   NULL,       50  ,   1  ,        5  , },
-    {  "medallion_1",     tags103,    NULL,        descMedallion,   "no",       corpse,    NULL,       0   ,   1  ,        1  , },
-    {  "medallion_2",     tags104,    NULL,        descMedallion,   "no",       skull,     NULL,       0   ,   1  ,        1  , },
-    {  "medallion_3",     tags105,    NULL,        descMedallion,   "no",       pot,       NULL,       0   ,   1  ,        1  , },
-    {  "medallion_4",     tags106,    NULL,        descMedallion,   "no",       drowner,   NULL,       0   ,   1  ,        1  , },
-    {  "medallion_5",     tags107,    NULL,        descMedallion,   "no",       cave,      NULL,       0   ,   1  ,        1  , },
-    {  "medallion_6",     tags108,    NULL,        descMedallion,   "no",       nest,      NULL,       0   ,   1  ,        1  , },
-    {  "medallion_7",     tags109,    NULL,        descMedallion,   "no",       branch,    NULL,       0   ,   1  ,        1  , },
+    {  "medallion_1",     tags103,    NULL,        descMedallion_1, "no",       corpse,    NULL,       0   ,   1  ,        1  , },
+    {  "medallion_2",     tags104,    NULL,        descMedallion_2, "no",       skull,     NULL,       0   ,   1  ,        1  , },
+    {  "medallion_3",     tags105,    NULL,        descMedallion_1, "no",       pot,       NULL,       0   ,   1  ,        1  , },
+    {  "medallion_4",     tags106,    NULL,        descMedallion_1, "no",       drowner,   NULL,       0   ,   1  ,        1  , },
+    {  "medallion_5",     tags107,    NULL,        descMedallion_1, "no",       cave,      NULL,       0   ,   1  ,        1  , },
+    {  "medallion_6",     tags108,    NULL,        descMedallion_1, "no",       nest,      NULL,       0   ,   1  ,        1  , },
+    {  "medallion_7",     tags109,    NULL,        descMedallion_1, "no",       branch,    NULL,       0   ,   1  ,        1  , },
     {  "dead drowner",    tags110,    NULL,        descDrowner_D ,  "no",       bridge,    NULL,       10  ,   70 ,        70 , },
     {  "dead leshy",      tags111,    NULL,        descLeshy_D ,    "no",       leshy,     NULL,       5   ,   100,        100, },
     {  "dead troll",      tags112,    NULL,        descTroll_D ,    "no",       troll,     NULL,       5   ,   600,        600, },
