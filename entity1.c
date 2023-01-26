@@ -821,7 +821,7 @@ ENTITY ents[] = {
     int              capacity;   */                                                                         
                                                                                                     //weight = AC for characters
     // Characters -------tags----------dir-----------desc--------visited---location---destination-----hp------weight-----capacity---
-    {  "player",          tags0,      NULL      ,  descPlayer ,     "no",      bog,       NULL,      50  ,    15  ,       100, },
+    {  "player",          tags0,      NULL      ,  descPlayer ,     "player",  bog,       NULL,      50  ,    15  ,       100, },
     {  "drowner",         tags1,      NULL      ,  descDrowner ,    "no",      bridge,    NULL,      25  ,    11  ,       111, },
     {  "leshy",           tags2,      NULL      ,  descLeshy ,      "no",      totem,     NULL,      40  ,    12  ,       111, },
     {  "troll",           tags3,      NULL      ,  descTroll ,      "no",      tunnel,    NULL,      50  ,    16  ,       111, },
