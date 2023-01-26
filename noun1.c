@@ -285,16 +285,27 @@ static ENTITY *whatsInside(const char *noun)
 
             for (ent2 = ents; ent2 < endOfEnts; ent2++)
             {
-                //if (ent2->location != NULL && ent == player)                  // if checking player's inventory
-                //{                                                                                                                                             // ANTHONY MAKE COMMAND "check player" list objects in player inventory
-                //    if (strcmp(ent2->location->name, ent->name) == 0 && counter == 0) printf("\nUpon checking %s you see:\n%s", noun, ent2->name);
-                //    if (strcmp(ent2->location->name, ent->name) == 0 && counter > 0) printf(",\n%s", noun, ent2->name);
-                //} 
-                if (ent2->location != NULL && ent->location == player->location && strcmp(ent->visited, "now") == 0 || ent == player)           // If standing next to entity to check *Checks entity*
+                if (ent2->name == player->name)
+                    printf("%s", player->name);
+                if (ent2->location != NULL && ent->location == player->location && strcmp(ent->visited, "now") == 0 /*|| ent == player*/)           // If standing next to entity to check *Checks entity*
                 {
-                    if (strcmp(ent2->location->name, ent->name) == 0 ) printf("\nUpon checking %s you see:\n%s", noun, ent2->desc[0]); counter++; continue;             // ANTHONY TRY TO MAKE check *noun* command give nicely formatted outputs
-                    if (strcmp(ent2->location->name, ent->name) == 0 && counter > 0) printf(",\n%s", ent2->desc[0]);
+                  //printf("%s", player->name);
+                        //continue;             // ANTHONY TRY TO MAKE check *noun* command give nicely formatted outputs
+                   if(strcmp(ent2->location->name, ent->name) == 0 && counter > 0) // I swapped the order of the if and else if statements so that the counter variable is checked first -Anthony
+                   {                                                               
+                        printf(", %s", ent2->desc[0]);
+                        counter++;
+
+                   }
+                   else if (strcmp(ent2->location->name, ent->name) == 0) // There was no logical way for the program to ever skip this statement, so I made it the else if statement -Anthony
+                   { 
+                        printf("\nUpon checking %s you see:\n\n%s", noun, ent2->desc[0]); 
+                        counter++;
+                   }
+
                 }
+                    
+
                 else if (ent2->location != NULL && ent->location == player->location && strcmp(ent->visited, "yes") == 0 )      // If standing in the same location as the entity to check, but not close to it
                 {
                     printf("\nYou need to get closer to %s if you want to check it out!", noun);
@@ -309,6 +320,11 @@ static ENTITY *whatsInside(const char *noun)
         }
             
     }  
+                if (counter > 0) //puts a peroid at the end of item list -Anthony
+                {
+                    printf(".");
+                    counter = 0;
+                }
     //printf("\nYou don't see any %s around here.", noun);       
 }
 
