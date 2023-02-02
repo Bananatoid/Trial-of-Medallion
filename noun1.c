@@ -137,47 +137,60 @@ void *printWest(const char *noun)
     if (player->location->dir[3] != NULL) printf("%s\n", player->location->dir[3]);
 }
 
-// -------------- LISTING OBJECTS PRESENT AT LOCATION --------------------
+// -------------- CHECKING OBJECTS PRESENT IN PLAYERS LOCATION OFR DUPLICATE NAMES --------------------
 
-static ENTITY* listEntities()
+static ENTITY *checkDuplicates()
 {
-    ENTITY *ent = NULL;
+    ENTITY *ent =  NULL;
+    ENTITY *ent2 = NULL;
     int counter = 0;
+    int choice = 0;
 
     for(ent = ents ; ent < endOfEnts ; ent++)
     {
-        if (ent->name != "player" && ent->hp != 9999 && ent->location == player->location && ent->visited != "no")
+        for (ent2 = ents; ent2 < endOfEnts ; ent2++)
+        
+        if (ent->location == ent2->location && ent->destination == NULL && ent2->destination == NULL && ent->desc[4] != ent2->desc[4])
         {   
-            if (counter == 0) printf("\n\nYou see: %s", ent->desc[4]);
-            else printf(", %s", ent->name);
-            counter++ ;
+            if (strcmp(ent->tags[0], ent2->tags[0]) == 0 && ent->location == player->location)
+            {
+                ent->capacity  = 666;
+                ent2->capacity = 666;
+                printf("\n\nDuplicate found <<<%s>>>", ent->tags[0]);
+                printf("\n\nDupe assigned");
+                //return ent;
+            }
         }
     }
-    if (counter > 0) printf(".");
-    counter = 0;
-
-
-    for(ent = ents ; ent < endOfEnts ; ent++)
-    {
-        if (ent->name != "player" && ent->hp != 9999 && ent->location == player->location && ent->visited == "no")
-        {   
-            if (counter == 0) printf("\n\n%s", ent->desc[4]);
-            else printf("\n%s", ent->desc[4]);
-            counter++ ;
-        }
-    }
-    if (counter == 0) printf("\nYou thoroughly inspected this area, there is nothing else new you can find here."); 
-    counter = 0;
-}    
+}
 
 // ------------- ADDS ITEM TO PLAYER'S INVENTORY -------------
 
 static ENTITY *pickUpObject(const char *noun)
-{
+{                                                                       
     ENTITY *ent = NULL;
     ENTITY *ent2 = NULL;
     ENTITY *host = NULL;
-    int counter = 0;
+    ENTITY *chosen = NULL;
+    int counter, choice, dupe_counter = 0;
+
+    checkDuplicates();
+    
+    
+    for(ent = ents ; ent < endOfEnts ; ent++)
+        {
+            if (ent->capacity == 666) 
+            {
+                if (dupe_counter == 0) printf("\nWhich %s did you have in mind?\n\n--> ", noun);
+                printf("\n%d) %s\n", dupe_counter+1, ent->desc[4]);
+                dupe_counter++;
+                   
+            }
+        }
+    if (dupe_counter > 0 ) scanf("%d", &choice);
+    
+    dupe_counter = 0;        
+    counter = 0;
     for (ent = ents; ent < endOfEnts ; ent++)
     {
         if (entHasTag(ent, noun) )                                                                        // if chosen object matches tags of some entity 
@@ -187,11 +200,11 @@ static ENTITY *pickUpObject(const char *noun)
                 printf("You attempt to pick up a %s, you struggle for a bit but when you look up and see the %s's disgruntled face, you stop and step back", noun, noun);
                 break;
             }
-            else if (ent->visited == "now")                                                                    // if standing next to object to pick up, *OBJECT GETS PICKED UP*
+            else if (ent->visited == "now")                                                                // if standing next to object to pick up, *OBJECT GETS PICKED UP*
             {
-                if (ent->weight > player->capacity ) 
+                if (ent->weight > player->capacity )                                                    // if chosen object weighs more than player's available capacity
                 {
-                    printf("\nThis is too heavy for you to pick up!\n");                                // if chosen object weighs more than player's available capacity
+                    printf("\nThis is too heavy for you to pick up!\n");                                
                     break;
                 }
 
@@ -205,12 +218,12 @@ static ENTITY *pickUpObject(const char *noun)
                         player->capacity = player->capacity - ent2->weight;
                         if (counter == 0)
                         {
-                            printf("\nYou search %s thoroughly before picking it up, you find %s", host->name, ent2->tags[4]);
+                            printf("\nYou search %s thoroughly before picking it up, you find %s", host->desc[4], ent2->desc[4]);
                             counter++;
                         }
                         else if (counter > 0)
                         {
-                            printf(", %s", ent2->tags[4]);
+                            printf(", %s", ent2->desc[4]);
                             counter++;
                         }
                     }
@@ -251,6 +264,13 @@ static ENTITY *pickUpObject(const char *noun)
 static ENTITY *dropObject(const char *noun)
 {
     ENTITY *ent = NULL;
+
+    if (checkDuplicates() )
+    {
+        printf("yes");
+    }
+    else printf("no");
+
     for (ent = ents; ent < endOfEnts ; ent++)
     {
         if (entHasTag(ent, noun) )                                                                         
@@ -339,3 +359,53 @@ static ENTITY *whatsInside(const char *noun)
     //printf("\nYou don't see any %s around here.", noun);       
 }
 
+
+
+// -------------- LISTING OBJECTS PRESENT AT LOCATION --------------------
+
+static ENTITY *listEntities()
+{
+    ENTITY *ent =  NULL;
+    ENTITY *ent2 = NULL;
+    int counter = 0;
+
+    checkDuplicates();
+
+    for(ent = ents ; ent < endOfEnts ; ent++)
+    {
+        if (ent->name != "player" && ent->hp != 9999 && ent->location == player->location && ent->visited != "no")
+        {   
+            if (counter == 0) printf("\n\nYou see: %s", ent->desc[4]);
+            else printf(", %s", ent->desc[4]);
+            counter++ ;
+        }
+    }
+    if (counter > 0) printf(".");
+    counter = 0;
+
+
+    for(ent = ents ; ent < endOfEnts ; ent++)
+    {
+        if (ent->name != "player" && ent->hp != 9999 && ent->location == player->location && ent->visited == "no")
+        {   
+            if (counter == 0) printf("\n\n%s", ent->desc[4]);
+            else printf("\n%s", ent->desc[4]);
+            counter++ ;
+        }
+    }
+    if (counter == 0) printf("\nYou thoroughly inspected this area, there is nothing else new you can find here."); 
+    counter = 0;
+}    
+
+/*
+printf("\nWhich %s do you have in mind?\n\n--> ", ent->tags[0]);
+
+                for(ent = ents ; ent < endOfEnts ; ent++)
+                {
+                    if 
+                }    
+
+                scanf("%d", &choice);
+                printf("\n%d\n", choice);
+                
+                */

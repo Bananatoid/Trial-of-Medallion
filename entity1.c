@@ -720,14 +720,14 @@ static const char *descLetter[] = {
 "letter4",
 "Letter" };
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static const char *descMedallion_1 = {
+static const char *descMedallion_1[] = {
 "Shiny Medallion",
 "MEdallion2",
 "MEdallion3",
 "Medallion4",
 "Shiny Medallion" };
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-static const char *descMedallion_2 = {
+static const char *descMedallion_2[] = {
 "Rusty Medallion",
 "MEdallion2",
 "MEdallion3",
@@ -810,6 +810,13 @@ static const char *descSwallow[] = {
 "swallow 3",
 "swallow 4",
 "Swallow" };
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+static const char *descDummy[] = {
+"Dummy 1 ",
+"Dummy 2",
+"Dummy 3",
+"Dummy 4",
+"Dummy" };
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ENTITY ents[] = {
@@ -949,7 +956,7 @@ ENTITY ents[] = {
     {  "letter",          tags101,    NULL,        descLetter,      "no",       treetop,   NULL,       0   ,   1  ,        1  , },
     {  "sack_2",          tags102,    NULL,        descSack,        "no",       treetop,   NULL,       50  ,   1  ,        5  , },
     {  "medallion_1",     tags103,    NULL,        descMedallion_1, "no",       corpse,    NULL,       0   ,   1  ,        1  , },
-    {  "medallion_2",     tags104,    NULL,        descMedallion_2, "no",       skull,     NULL,       0   ,   1  ,        1  , },
+    {  "medallion_2",     tags104,    NULL,        descMedallion_2, "no",       bog,     NULL,       0   ,   1  ,        1  , },
     {  "medallion_3",     tags105,    NULL,        descMedallion_1, "no",       pot,       NULL,       0   ,   1  ,        1  , },
     {  "medallion_4",     tags106,    NULL,        descMedallion_1, "no",       drowner,   NULL,       0   ,   1  ,        1  , },
     {  "medallion_5",     tags107,    NULL,        descMedallion_1, "no",       cave,      NULL,       0   ,   1  ,        1  , },
@@ -966,7 +973,7 @@ ENTITY ents[] = {
     {  "greatsword",      tags118,    NULL,        descGreatsword,  "no",       NULL,      NULL,       12  ,   2  ,        2  , },
     {  "armor",           tags119,    NULL,        descArmor,       "no",       NULL,      NULL,       3   ,   10 ,        10 , },
     {  "swallow",         tags120,    NULL,        descSwallow,     "no",       NULL,      NULL,       50  ,   1  ,        1  , },
-    {  "dummy",           tags121,    NULL,        NULL,            "no",       NULL,      NULL,       0   ,   0  ,        0  , },
+    {  "dummy",           tags121,    NULL,        descDummy,       "no",       NULL,      NULL,       0   ,   0  ,        0  , },
     
     
 

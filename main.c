@@ -12,7 +12,7 @@ static char input[100];
 
 static bool getInput(void)
 {
-	printf("\n--> ");
+	printf("\n\n--> ");
 	return fgets(input, sizeof input, stdin) != NULL;
 }
 
